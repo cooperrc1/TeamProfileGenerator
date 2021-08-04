@@ -1,41 +1,27 @@
- const fs = require('fs');
-const inquirer = require('inquirer');
-const generatePage = require('./sc/test');
-const Employee = require('./lib/employee');
-const Engineer = require('./lib/engineer');
-const Intern = require('./lib/intern');
-const Manager = require('./lib/manager');
-let enginArr = [];
-let managerArr = [];
-let internArr = [];
-let employeeArr = {enginArr, managerArr, internArr};
-function promptUser(){
-    return inquirer
-    .prompt([
-        {
-            type: 'text',
-            name: 'employee',
-            message: "What is the workers's name? (Required!)",
-            validate: employeeInput => {
-                if (employeeInput) {
-                    return true;
-                }
-             else {
-                    console.log ("Please enter the workers's name.");
-                    return false;
-                }
-            }
-        },
-    ])}
-    promptUser()
-    .then(eD => {
-        return generatePage(employeeArr)
-    })
-    .then (htmlFile =>{
-        fs.writeFile('./dist/index.html', htmlFile, err=> {
-            console.log('File was successfully created.')
-            if(err){
-                return;
-            }
-        })
-    })
+const createCards = eD => {
+    console.log(eD);
+    
+        const engineer = eD.enginArr.map(function() {
+            let engineerDisplay = `
+            <h2 style="width: 15rem; margin-left: 17px;">Employees Name</h2>
+            `
+    
+            return engineerDisplay
+            
+        })};
+        module.exports = htmlTemplate => {
+            return `
+            <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>    
+            `
+        }
