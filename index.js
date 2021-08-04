@@ -5,10 +5,10 @@ const Employee = require('./lib/employee');
 const Engineer = require('./lib/engineer');
 const Intern = require('./lib/intern');
 const Manager = require('./lib/manager');
-let engineerArr = [];
+let enginArr = [];
 let managerArr = [];
 let internArr = [];
-let employeeArr = {engineerArr, managerArr, internArr};
+let employeeArr = {enginArr, managerArr, internArr};
 function promptUser(){
     return inquirer
     .prompt([
@@ -26,15 +26,16 @@ function promptUser(){
                 }
             }
         },
-        promptUser()
-        .then(eD => {
-            return generatePage(employeeArr)
+    ])}
+    promptUser()
+    .then(eD => {
+        return generatePage(employeeArr)
+    })
+    .then (htmlFile =>{
+        fs.writeFile('./dist/index.html', htmlFile, err=> {
+            console.log('File was successfully created.')
+            if(err){
+                return;
+            }
         })
-        .then (htmlFile =>{
-            fs.writeFile('./dist/index.html', htmlFile, err=> {
-                console.log('File was successfully created.')
-                if(err){
-                    return;
-                }
-            })
-        })
+    })
